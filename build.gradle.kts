@@ -17,12 +17,6 @@ allprojects {
     }
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
-
 subprojects {
 
     extra["springCloudVersion"] = "2023.0.3"
@@ -60,6 +54,13 @@ subprojects {
 
     tasks.assemble {
         dependsOn("shadowJar")
+    }
+
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
 
     tasks.withType<KotlinCompile> {
