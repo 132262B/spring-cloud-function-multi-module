@@ -1,10 +1,10 @@
 tasks.withType<Jar> {
     manifest {
-        attributes["Start-Class"] = "app.PingFunctionApplication"
+        attributes["Start-Class"] = "app.HelloFunctionApplication"
     }
 }
 
 
 tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
-    archiveFileName.set("ping.jar")
+    archiveFileName.set("hello.jar")
 }

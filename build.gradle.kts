@@ -49,7 +49,7 @@ subprojects {
     }
 
     tasks.getByName("jar") {
-        enabled = true
+        enabled = false
     }
 
     tasks.assemble {
@@ -82,7 +82,6 @@ subprojects {
 
     tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
         archiveClassifier.set("aws")
-        archiveFileName.set("test.jar")
         dependencies {
             exclude("org.springframework.cloud:spring-cloud-function-web")
         }

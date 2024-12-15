@@ -7,17 +7,18 @@ import org.springframework.context.annotation.Bean
 
 
 @SpringBootApplication
-class PingFunctionApplication {
+class HelloFunctionApplication {
 
     private val log = KotlinLogging.logger {}
-
     @Bean
     fun ping(): (String) -> String {
+        println("aaa")
         log.info { "ㅇㅇ 잘됨" }
-        return { "ping world" }
+        return { "ok!" }
     }
 }
 
+
 fun main(args: Array<String>) {
-    runApplication<PingFunctionApplication>(*args)
+    runApplication<HelloFunctionApplication>(*args)
 }
