@@ -1,10 +1,11 @@
 tasks.withType<Jar> {
     manifest {
-        attributes["Start-Class"] = "app.HelloFunctionApplication"
+        attributes["Start-Class"] = "app.ExampleFunctionApplication"
     }
 }
 
 
 tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
-    archiveFileName.set("hello.jar")
+    archiveFileName.set("example.jar")
 }
+

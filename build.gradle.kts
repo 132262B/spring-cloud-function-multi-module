@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.25"
+    kotlin("jvm") version "2.1.0"
     kotlin("plugin.spring") version "1.9.25"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("org.springframework.boot") version "3.3.4"
@@ -28,14 +28,17 @@ subprojects {
     apply(plugin = "com.github.johnrengelman.shadow")
 
     dependencies {
-        implementation("org.springframework.cloud:spring-cloud-function-context")
-        implementation("org.springframework.cloud:spring-cloud-function-kotlin")
-        implementation("org.springframework.cloud:spring-cloud-function-web")
-        implementation("org.springframework.cloud:spring-cloud-function-adapter-aws")
+        implementation("org.springframework.cloud:spring-cloud-function-context:4.1.4")
+        implementation("org.springframework.cloud:spring-cloud-function-kotlin:4.1.4")
+        implementation("org.springframework.cloud:spring-cloud-starter-function-web:4.1.4")
+        implementation("org.springframework.cloud:spring-cloud-function-adapter-aws:4.1.4")
+//        implementation("org.springframework.cloud:spring-cloud-function-web")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.mockk:mockk:1.13.12")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
         implementation("io.github.oshai:kotlin-logging-jvm:6.0.2")
+        runtimeOnly("org.jetbrains.kotlin:kotlin-reflect")
     }
 
     dependencyManagement {
@@ -59,14 +62,14 @@ subprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
+            languageVersion = JavaLanguageVersion.of(17)
         }
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs += "-Xjsr305=strict"
-            jvmTarget = "21"
+            jvmTarget = "17"
         }
     }
 
@@ -84,6 +87,7 @@ subprojects {
         archiveClassifier.set("aws")
         dependencies {
             exclude("org.springframework.cloud:spring-cloud-function-web")
+            exclude("org.springframework.cloud:spring-cloud-starter-function-web")
         }
         mergeServiceFiles()
         append("META-INF/spring.handlers")

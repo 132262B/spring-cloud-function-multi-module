@@ -1,4 +1,4 @@
-spring:
-  cloud:
-    function:
-      definition: ping
+#spring:
+#  cloud:
+#    function:
+#      definition: ping;post
